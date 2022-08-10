@@ -137,7 +137,7 @@ class QfigtpTest(unittest.TestCase):
             self, self.BRIDGE,
             self.service_manager,
             include_stats=False,
-            snapshot_name='empty',
+#            snapshot_name='empty',  ## commented from HEAD
         )
         with snapshot_verifier:
             pass

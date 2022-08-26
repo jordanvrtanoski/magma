@@ -202,7 +202,7 @@ Start your access gateway:
 
 ```bash
 cd /var/opt/magma/docker
-docker-compose up -d
+sudo docker-compose up -d
 ```
 
 Now get Hardware ID and Challenge key and add AGW in your orc8r:
@@ -214,5 +214,5 @@ docker exec magmad show_gateway_info.py
 Then restart your access gateway:
 
 ```bash
-docker-compose up -d --force-recreate
+sudo docker-compose up -d --force-recreate
 ```

@@ -18,7 +18,7 @@ ARG CPU_ARCH=x86_64
 ARG DEB_PORT=amd64
 ARG OS_DIST=ubuntu
 ARG OS_RELEASE=focal
-ARG EXTRA_REPO=https://artifactory.magmacore.org/artifactory/debian-test
+ARG EXTRA_REPO=https://artifactory.magmacore.org/artifactory/debian
 ARG CLANG_VERSION=3.8
 ARG FEATURES=mme_oai
 
@@ -92,7 +92,7 @@ RUN apt-get update && apt-get install -y \
   wget \
   && rm -rf /var/lib/apt/lists/*
 
-RUN echo "deb https://artifactory.magmacore.org/artifactory/debian-test focal-1.8.0 main" > /etc/apt/sources.list.d/magma.list
+RUN echo "deb https://artifactory.magmacore.org/artifactory/debian focal-1.8.0 main" > /etc/apt/sources.list.d/magma.list
 RUN wget -qO - https://artifactory.magmacore.org:443/artifactory/api/gpg/key/public | apt-key add -
 RUN apt-get update && apt-get install -y \
   grpc-dev \
@@ -192,7 +192,7 @@ RUN apt-get update && apt-get install -y \
   wget \
   && rm -rf /var/lib/apt/lists/*
 
-RUN echo "deb https://artifactory.magmacore.org/artifactory/debian-test focal-1.8.0 main" > /etc/apt/sources.list.d/magma.list
+RUN echo "deb https://artifactory.magmacore.org/artifactory/debian focal-1.8.0 main" > /etc/apt/sources.list.d/magma.list
 RUN wget -qO - https://artifactory.magmacore.org:443/artifactory/api/gpg/key/public | apt-key add -
 RUN apt-get update && apt-get install -y \
   libopenvswitch \

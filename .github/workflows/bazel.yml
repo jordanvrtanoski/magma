@@ -32,7 +32,7 @@ concurrency:
 
 jobs:
   path_filter:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     outputs:
       files_changed: ${{ steps.changes.outputs.files_changed }}
     if: github.repository_owner == 'magma' || github.event_name == 'workflow_dispatch'
@@ -79,7 +79,7 @@ jobs:
           - bazel-config: "--config=production"
             bazel-target: "`bazel query 'kind(cc.*, //...)'`"
     name: Bazel Build & Test Job
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Check Out Repo
         # This is necessary for overlays into the Docker container below.
@@ -224,7 +224,7 @@ jobs:
       needs.path_filter.outputs.files_changed == 'true' ||
       github.event_name == 'workflow_dispatch'
     name: Bazel Package Job
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Check Out Repo
         # This is necessary for overlays into the Docker container below.
@@ -276,7 +276,7 @@ jobs:
 
   python_file_check:
     name: Check if there are not bazelified python files
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Check Out Repo
         uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # pin@v2
@@ -298,7 +298,7 @@ jobs:
 
   c_cpp_file_check:
     name: Check if there are non-bazelified c or c++ files
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Check Out Repo
         uses: actions/checkout@7884fcad6b5d53d10323aee724dc68d8b9096a2e # pin@v2

@@ -76,6 +76,7 @@ from magma.pipelined.policy_converters import (
     convert_ipv4_str_to_ip_proto,
     convert_ipv6_bytes_to_ip_proto,
 )
+from magma.pipelined.subscriberdb_client import SubscriberDbClient
 
 grpc_msg_queue: queue.Queue = queue.Queue()
 DEFAULT_CALL_TIMEOUT = 5
@@ -335,9 +336,25 @@ class PipelinedRpcServicer(pipelined_pb2_grpc.PipelinedServicer):
         enforcement_stats flows.
         """
         logging.debug('Activating GX flows for %s', request.sid.id)
+
+        # If the enforcement of UE_AMBR is active, get the UE_AMBR and find the minimum from
+        # the APN_AMBR and UE_AMBR
+        # TODO: The UE_AMBR is the parent limiting the traffic from all Non-GBPR APNs. We need
+        # to implement the enforcement of UE_AMBR as a node in the QOS queue hierarchy. 
+        min_ambr = request.apn_ambr
+        if self._service_config["qos"]["enforce_ue_ambr"]:
+            try:
+                ue_ambr = SubscriberDbClient().get_subscriber_ue_ambr(request.sid.id)
+                min_ambr.max_bandwidth_dl = min(min_ambr.max_bandwidth_dl, ue_ambr.max_bandwidth_dl)
+                min_ambr.max_bandwidth_ul = min(min_ambr.max_bandwidth_ul, ue_ambr.max_bandwidth_ul)
+                logging.debug("Setting the Effective AMBR for GX flows to dl = {} bpr, ul = {} bps".format(min_ambr.max_bandwidth_dl,min_ambr.max_bandwidth_ul))
+            except:
+                logging.error("Setting the Effective AMBR failed. Fallback to APN_AMBR")
+                min_ambr = request.apn_ambr
+
         # Install rules in enforcement stats
         enforcement_stats_res = self._activate_rules_in_enforcement_stats(
-            request.sid.id, request.msisdn, request.uplink_tunnel, ip_address, request.apn_ambr,
+            request.sid.id, request.msisdn, request.uplink_tunnel, ip_address, min_ambr,
             request.policies, request.shard_id, local_f_teid_ng,
         )
 
@@ -348,7 +365,7 @@ class PipelinedRpcServicer(pipelined_pb2_grpc.PipelinedServicer):
             _filter_failed_policies(request, failed_policies_results)
 
         enforcement_res = self._activate_rules_in_enforcement(
-            request.sid.id, request.msisdn, request.uplink_tunnel, ip_address, request.apn_ambr,
+            request.sid.id, request.msisdn, request.uplink_tunnel, ip_address, min_ambr,
             policies, request.shard_id, local_f_teid_ng,
         )
 

@@ -389,6 +389,24 @@ class QosManager(object):
             qos_info: QosInfo,
             cleanup_rule=None,
     ):
+        """ Add QoS root and chid (leaf) traffic shaping queue
+
+        Parameters
+        ----------
+        imsi: str
+            Subscriber identification number
+        ip_addr: str
+            IP address allocated for the PDP context
+        apn_ambr: int
+            APN Agregated Maximum Bit Rate. This specifies the limits of the traffic that should be enforced for the APN
+        rule_num: int
+            Rule number for tracking
+        dirction: FlowMatch.Direction
+            "Uplink" or "Downlink" flow
+        qos_info: QosInfo
+            Specifies the subscriber (child) flow limits, the `gbr` and `mbr` specify the guaranteed bit rate and maximum bit rate
+        cleanup_rule:
+        """
         with self._lock:
             if not self._qos_enabled or not self._initialized:
                 LOG.debug("add_subscriber_qos: not enabled or initialized")
@@ -427,7 +445,7 @@ class QosManager(object):
 
                 if not ambr_qos_handle_root:
                     ambr_qos_handle_root = self.impl.add_qos(
-                        direction, QosInfo(gbr=None, mbr=apn_ambr),
+                        direction, QosInfo(gbr=apn_ambr, mbr=apn_ambr),
                         cleanup_rule,
                         skip_filter=True,
                     )

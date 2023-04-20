@@ -330,6 +330,18 @@ class TCManager(object):
         self, d: FlowMatch.Direction, qos_info: QosInfo,
         cleanup_rule=None, parent=None, skip_filter=False,
     ) -> int:
+        """Create QoS quue on the specific interface
+
+        Parameters
+        ---------- 
+        d: FlowMatch.Direction
+            Dirction "Uplink" or "Downlink" on which the QoS is created
+        qos_info: QosInfo
+            QoS parameters
+        cleanup_rule:
+        parent:
+        skip_filter:
+        """
         LOG.debug("add QoS: %s", qos_info)
         qid = self._id_manager.allocate_idx()
         self.create_class_async(

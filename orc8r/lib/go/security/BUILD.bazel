@@ -11,22 +11,15 @@
 
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
+# This library is needed to satisfy the side-effect imports of
+# this package. E.g. in orc8r/lib/go/service/config/service_config.go
 go_library(
-    name = "service_registry",
-    srcs = [
-        "registry.go",
-        "shared_registry.go",
-    ],
-    importpath = "magma/orc8r/gateway/go/service_registry",
-    # Equivalent to replace directives in go.mod files.
-    importpath_aliases = ["magma/gateway/service_registry"],
+    name = "security",
+    importpath = "magma/orc8r/lib/go/security",
     visibility = ["//visibility:public"],
     deps = [
-        "//orc8r/lib/go/initflag",
-        "//orc8r/lib/go/protos",
-        "//orc8r/lib/go/registry",
-        "//orc8r/lib/go/service/config",
-        "@com_github_golang_glog//:glog",
-        "@org_golang_google_grpc//:go_default_library",
+        "//orc8r/lib/go/security/cert",
+        "//orc8r/lib/go/security/csr",
+        "//orc8r/lib/go/security/key",
     ],
 )

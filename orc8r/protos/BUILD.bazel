@@ -12,6 +12,7 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@rules_proto_grpc//cpp:defs.bzl", "cpp_grpc_library", "cpp_proto_library")
 load("@rules_proto_grpc//python:defs.bzl", "python_grpc_library", "python_proto_library")
+load("@rules_proto_grpc//go:defs.bzl", "go_grpc_library")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -23,6 +24,34 @@ cpp_proto_library(
 python_proto_library(
     name = "common_python_proto",
     protos = [":common_proto"],
+)
+
+go_grpc_library(
+    name = "go_protos",
+    importpath = "magma/orc8r/lib/go/protos",
+    protos = [
+        ":bootstrapper_proto",
+        ":certifier_proto",
+        ":common_proto",
+        ":ctraced_proto",
+        ":digest_proto",
+        ":directoryd_proto",
+        ":eventd_proto",
+        ":identity_proto",
+        ":magmad_proto",
+        ":mconfig_orc8r_proto",
+        ":metricsd_proto",
+        ":redis_proto",
+        ":service303_proto",
+        ":service_registry_proto",
+        ":service_status_proto",
+        ":state_proto",
+        ":streamer_proto",
+        ":sync_rpc_service_proto",
+    ],
+    deps = [
+        "@com_github_prometheus_client_model//go",
+    ],
 )
 
 python_proto_library(
@@ -339,4 +368,13 @@ proto_library(
 python_grpc_library(
     name = "streamer_python_grpc",
     protos = [":streamer_proto"],
+)
+
+proto_library(
+    name = "service_registry_proto",
+    srcs = ["service_registry.proto"],
+    deps = [
+        ":common_proto",
+        "@com_google_protobuf//:any_proto",
+    ],
 )

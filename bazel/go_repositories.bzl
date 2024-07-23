@@ -648,6 +648,12 @@ def go_repositories():
         version = "v0.11.4",
     )
     go_repository(
+        name = "com_github_emakeev_snowflake",
+        importpath = "github.com/emakeev/snowflake",
+        sum = "h1:AtQCu1EME1N7Gwb4BNcpeKNxPmMK6G2QCeN+rVJO1EM=",
+        version = "v0.0.0-20200206205012-767080b052fe",
+    )
+    go_repository(
         name = "com_github_pkg_errors",
         importpath = "github.com/pkg/errors",
         sum = "h1:iURUrRGxPUNPdy5/HRSm+Yj6okJ6UtLINN0Q9M4+h3I=",

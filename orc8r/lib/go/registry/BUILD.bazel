@@ -24,7 +24,7 @@ go_library(
     importpath = "magma/orc8r/lib/go/registry",
     visibility = ["//visibility:public"],
     deps = [
-        "//orc8r/lib/go/protos:common_go_proto",
+        "//orc8r/lib/go/protos",
         "//orc8r/lib/go/registry/client:client_api",
         "//orc8r/lib/go/service/config",
         "@com_github_golang_glog//:glog",

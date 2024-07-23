@@ -16,5 +16,5 @@ go_library(
     srcs = ["client_api.go"],
     importpath = "magma/orc8r/lib/go/registry/client",
     visibility = ["//visibility:public"],
-    deps = ["//orc8r/lib/go/protos:common_go_proto"],
+    deps = ["//orc8r/lib/go/protos"],
 )

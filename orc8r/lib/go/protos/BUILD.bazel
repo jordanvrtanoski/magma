@@ -32,32 +32,12 @@ go_library(
     ],
 )
 
-go_library(
-    name = "fillin",
-    srcs = ["fillin.go"],
-    importpath = "magma/orc8r/lib/go/protos",
-    visibility = ["//visibility:public"],
-)
-
 go_test(
     name = "fill_in_test",
     srcs = ["fill_in_test.go"],
     deps = [
-        ":fillin",
+        ":protos",
         "@com_github_stretchr_testify//assert",
-    ],
-)
-
-go_library(
-    name = "marshaler",
-    srcs = ["marshaler.go"],
-    embed = ["//orc8r/protos:common_go_proto"],
-    importpath = "magma/orc8r/lib/go/protos",
-    visibility = ["//visibility:public"],
-    deps = [
-        "@com_github_golang_glog//:glog",
-        "@com_github_golang_protobuf//jsonpb:go_default_library_gen",
-        "@com_github_golang_protobuf//proto:go_default_library",
     ],
 )
 
@@ -65,7 +45,7 @@ go_test(
     name = "marshaler_test",
     srcs = ["marshaler_test.go"],
     deps = [
-        ":marshaler",
+        ":protos",
         "//orc8r/lib/go/protos/mconfig",
         "@com_github_golang_protobuf//ptypes:go_default_library_gen",
         "@com_github_stretchr_testify//assert",

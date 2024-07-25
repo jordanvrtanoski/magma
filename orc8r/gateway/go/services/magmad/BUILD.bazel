@@ -23,9 +23,15 @@ go_library(
         "//orc8r/gateway/go/service_registry",
         "//orc8r/gateway/go/services/bootstrapper/gateway_info",
         "//orc8r/gateway/go/services/bootstrapper/service",
+        "//orc8r/gateway/go/services/configurator/service",
         "//orc8r/gateway/go/services/magmad/service",
+        "//orc8r/gateway/go/services/magmad/service/ping",
         "//orc8r/gateway/go/services/magmad/service_manager",
         "//orc8r/gateway/go/services/magmad/status",
+        "//orc8r/gateway/go/services/sync_rpc/service",
+        "//orc8r/lib/go/build_info",
+        "//orc8r/lib/go/definitions",
+        "//orc8r/lib/go/profile",
         "//orc8r/lib/go/protos",
         "@com_github_aeden_traceroute//:go_default_library",
         "@com_github_emakeev_snowflake//:go_default_library",
@@ -40,6 +46,5 @@ go_library(
 go_binary(
     name = "magmad",
     embed = [":magmad_lib"],
-    goos = "linux",
     visibility = ["//visibility:public"],
 )

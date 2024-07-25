@@ -61,6 +61,8 @@ func init() {
 }
 
 type Service struct {
+	protos.Service303Server
+
 	// Type identifies the service
 	Type string
 

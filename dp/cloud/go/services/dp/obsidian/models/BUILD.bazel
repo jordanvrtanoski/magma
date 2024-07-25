@@ -1,0 +1,40 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "models",
+    srcs = [
+        "capabilities_swaggergen.go",
+        "cbsd_swaggergen.go",
+        "conversion.go",
+        "frequency_preferences_swaggergen.go",
+        "gen.go",
+        "grant_swaggergen.go",
+        "installation_param_swaggergen.go",
+        "log_swaggergen.go",
+        "mutable_cbsd_swaggergen.go",
+        "mutable_installation_param_swaggergen.go",
+        "paginated_cbsds_swaggergen.go",
+        "paginated_logs_swaggergen.go",
+        "validation.go",
+    ],
+    importpath = "github.com/magma/magma/dp/cloud/go/services/dp/obsidian/models",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_go_openapi_errors//:go_default_library",
+        "@com_github_go_openapi_strfmt//:go_default_library",
+        "@com_github_go_openapi_swag//:go_default_library",
+        "@com_github_go_openapi_validate//:go_default_library",
+    ],
+)
+
+go_test(
+    name = "models_test",
+    srcs = [
+        "conversion_test.go",
+        "validation_test.go",
+    ],
+    deps = [
+        "@com_github_go_openapi_strfmt//:go_default_library",
+        "@com_github_stretchr_testify//assert",
+    ],
+)

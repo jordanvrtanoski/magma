@@ -12,10 +12,19 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 go_library(
-    name = "mconfig",
-    embed = ["//orc8r/protos:go_mconfig_protos"],
-    importpath = "magma/orc8r/lib/go/protos/mconfig",
+    name = "service_manager",
+    srcs = [
+        "docker_controller.go",
+        "initd_controller.go",
+        "runit_controller.go",
+        "service_controller.go",
+        "service_manager.go",
+        "systemd_controller.go",
+    ],
+    importpath = "magma/gateway/services/magmad/service_manager",
     visibility = ["//visibility:public"],
     deps = [
+        "//orc8r/gateway/go/config",
+        "@com_github_golang_glog//:glog",
     ],
 )

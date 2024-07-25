@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "storage",
+    srcs = [
+        "amc_manager.go",
+        "cbsd_manager.go",
+        "diff.go",
+        "dp_manager.go",
+        "models.go",
+        "pagination.go",
+    ],
+    importpath = "github.com/magma/magma/dp/cloud/go/services/dp/storage",
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_masterminds_squirrel//:go_default_library"],
+)
+
+go_test(
+    name = "storage_test",
+    srcs = [
+        "amc_manager_test.go",
+        "cbsd_manager_test.go",
+        "diff_test.go",
+        "models_test.go",
+    ],
+    deps = [
+        "@com_github_masterminds_squirrel//:go_default_library",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//suite",
+        "@in_gopkg_data_dog_go_sqlmock_v1//:go_default_library",
+    ],
+)

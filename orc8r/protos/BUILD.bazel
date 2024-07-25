@@ -54,6 +54,17 @@ go_grpc_library(
     ],
 )
 
+go_grpc_library(
+    name = "go_mconfig_protos",
+    importpath = "magma/orc8r/lib/go/protos/mconfig",
+    protos = [
+        ":mconfigs_proto",
+    ],
+    deps = [
+        "//orc8r/lib/go/protos",
+    ],
+)
+
 python_proto_library(
     name = "mconfig_python_proto",
     protos = [":mconfig_orc8r_proto"],

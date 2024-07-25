@@ -9,16 +9,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@rules_proto_grpc//python:defs.bzl", "python_grpc_library", "python_proto_library")
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
-package(default_visibility = ["//visibility:public"])
-
-python_proto_library(
-    name = "cbsd_python_proto",
-    protos = [":cbsd_proto"],
-)
-
-python_grpc_library(
-    name = "cbsd_python_grpc",
-    protos = [":cbsd_proto"],
+go_library(
+    name = "ping",
+    srcs = [
+        "ping.go",
+    ],
+    importpath = "magma/gateway/services/magmad/service/ping",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//orc8r/lib/go/protos",
+    ],
 )

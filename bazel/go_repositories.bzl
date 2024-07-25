@@ -948,10 +948,34 @@ def go_repositories():
         version = "v1.4.0",
     )
     go_repository(
+        name = "com_github_aeden_traceroute",
+        importpath = "github.com/aeden/traceroute",
+        sum = "h1:LbPChgmEVYTHVg0zmAydDO3YNRgkt31svsI7LJ0crjs=",
+        version = "v0.0.0-20181124220833-147686d9cb0f",
+    )
+    go_repository(
+        name = "com_github_hashicorp_errwrap",
+        importpath = "github.com/hashicorp/errwrap",
+        sum = "h1:hLrqtEDnRye3+sgx6z4qVLNuviH3MR5aQ0ykNJa/UYA=",
+        version = "v1.0.0",
+    )
+    go_repository(
+        name = "com_github_hashicorp_go_multierror",
+        importpath = "github.com/hashicorp/go-multierror",
+        sum = "h1:H5DkEtf6CXdFp0N0Em5UCwQpXMWke8IA0+lD48awMYo=",
+        version = "v1.1.1",
+    )
+    go_repository(
         name = "org_golang_google_genproto",
         importpath = "google.golang.org/genproto",
         sum = "h1:+kGHl1aib/qcwaRi1CbqBZ1rk19r85MNUf8HaBghugY=",
         version = "v0.0.0-20200526211855-cb27e3aa2013",
+    )
+    go_repository(
+        name = "com_github_google_shlex",
+        importpath = "github.com/google/shlex",
+        sum = "h1:El6M4kTTCOh6aBiKaUGG7oYTSPP8MxqL4YI3kZKwcP4=",
+        version = "v0.0.0-20191202100458-e7afc7fbc510",
     )
     go_repository(
         name = "org_golang_google_grpc",
@@ -992,6 +1016,36 @@ def go_repositories():
         importpath = "golang.org/x/lint",
         sum = "h1:5hukYrvBGR8/eNkX5mdUezrA6JiaEZDtJb9Ei+1LlBs=",
         version = "v0.0.0-20190930215403-16217165b5de",
+    )
+    go_repository(
+        name = "com_github_vishvananda_netns",
+        importpath = "github.com/vishvananda/netns",
+        sum = "h1:OviZH7qLw/7ZovXvuNyL3XQl8UFofeikI1NW1Gypu7k=",
+        version = "v0.0.0-20191106174202-0a2b9b5464df",
+    )
+    go_repository(
+        name = "com_github_tklauser_numcpus",
+        importpath = "github.com/tklauser/numcpus",
+        sum = "h1:ct88eFm+Q7m2ZfXJdan1xYoXKlmwsfP+k88q05KvlZc=",
+        version = "v0.2.1",
+    )
+    go_repository(
+        name = "com_github_tklauser_go_sysconf",
+        importpath = "github.com/tklauser/go-sysconf",
+        sum = "h1:HT8SVixZd3IzLdfs/xlpq0jeSfTX57g1v6wB1EuzV7M=",
+        version = "v0.3.4",
+    )
+    go_repository(
+        name = "com_github_shirou_gopsutil_v3",
+        importpath = "github.com/shirou/gopsutil/v3",
+        sum = "h1:YUBf0w/KPLk7w1803AYBnH7BmA+1Z/Q5MEZxpREUaB4=",
+        version = "v3.21.5",
+    )
+    go_repository(
+        name = "com_github_vishvananda_netlink",
+        importpath = "github.com/vishvananda/netlink",
+        sum = "h1:1iyaYNBLmP6L0220aDnYQpo1QEV4t4hJ+xEEhhJH8j0=",
+        version = "v1.1.0",
     )
     go_repository(
         name = "org_golang_x_mod",

@@ -15,7 +15,7 @@ require (
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/prometheus/client_model v0.2.0
-	github.com/shirou/gopsutil/v3 v3.21.5
+	github.com/shirou/gopsutil v3.21.5
 	github.com/stretchr/testify v1.7.0
 	github.com/vishvananda/netlink v1.1.0
 	golang.org/x/net v0.7.0

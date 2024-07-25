@@ -1,0 +1,35 @@
+# Copyright 2022 The Magma Authors.
+
+# This source code is licensed under the BSD-style license found in the
+# LICENSE file in the root directory of this source tree.
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "service",
+    srcs = [
+        "configurator.go",
+        "io.go",
+    ],
+    importpath = "magma/gateway/services/configurator/service",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//orc8r/gateway/go/config",
+        "//orc8r/gateway/go/mconfig",
+        "//orc8r/gateway/go/streamer",
+        "//orc8r/lib/go/definitions",
+        "//orc8r/lib/go/protos",
+        "//orc8r/lib/go/protos/mconfig",
+        "@com_github_golang_glog//:glog",
+        "@com_github_golang_protobuf//ptypes:go_default_library_gen",
+        "@io_bazel_rules_go//proto/wkt:any_go_proto",
+        "@org_golang_google_protobuf//reflect/protoreflect",
+        "@org_golang_google_protobuf//runtime/protoimpl",
+    ],
+)

@@ -12,10 +12,19 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 go_library(
-    name = "mconfig",
-    embed = ["//orc8r/protos:go_mconfig_protos"],
-    importpath = "magma/orc8r/lib/go/protos/mconfig",
+    name = "streamer",
+    srcs = [
+        "impl.go",
+        "listener.go",
+        "streamer.go",
+    ],
+    importpath = "magma/gateway/streamer",
     visibility = ["//visibility:public"],
     deps = [
+        "//orc8r/gateway/go/service_registry",
+        "//orc8r/lib/go/definitions",
+        "//orc8r/lib/go/protos",
+        "@io_bazel_rules_go//proto/wkt:any_go_proto",
+        "@org_golang_google_grpc//:go_default_library",
     ],
 )

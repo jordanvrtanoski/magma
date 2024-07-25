@@ -9,24 +9,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 go_library(
-    name = "magmad_lib",
+    name = "status",
     srcs = [
-        "main.go",
+        "metrics.go",
+        "metrics_queue.go",
+        "poller.go",
+        "reporter.go",
     ],
-    importpath = "magma",
-    visibility = ["//visibility:private"],
+    importpath = "magma/gateway/services/magmad/status",
+    visibility = ["//visibility:public"],
     deps = [
         "//orc8r/gateway/go/config",
+        "//orc8r/gateway/go/mconfig",
         "//orc8r/gateway/go/service_registry",
         "//orc8r/gateway/go/services/bootstrapper/gateway_info",
         "//orc8r/gateway/go/services/bootstrapper/service",
-        "//orc8r/gateway/go/services/magmad/service",
-        "//orc8r/gateway/go/services/magmad/service_manager",
-        "//orc8r/gateway/go/services/magmad/status",
+        "//orc8r/gateway/go/status",
+        "//orc8r/lib/go/definitions",
         "//orc8r/lib/go/protos",
+        "//orc8r/lib/go/protos/mconfig",
         "@com_github_aeden_traceroute//:go_default_library",
         "@com_github_emakeev_snowflake//:go_default_library",
         "@com_github_golang_glog//:glog",
@@ -35,11 +39,4 @@ go_library(
         "@com_github_hashicorp_go_multierror//:go_default_library",
         "@com_github_prometheus_client_model//go",
     ],
-)
-
-go_binary(
-    name = "magmad",
-    embed = [":magmad_lib"],
-    goos = "linux",
-    visibility = ["//visibility:public"],
 )

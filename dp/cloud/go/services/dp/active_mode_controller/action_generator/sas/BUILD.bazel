@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "sas",
+    srcs = [
+        "deregistration.go",
+        "grant.go",
+        "heartbeat.go",
+        "registration.go",
+        "relinquishment.go",
+        "request.go",
+        "spectrum_inquiry.go",
+    ],
+    importpath = "github.com/magma/magma/dp/cloud/go/services/dp/active_mode_controller/action_generator/sas",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "sas_test",
+    srcs = [
+        "deregistration_test.go",
+        "grant_test.go",
+        "heartbeat_test.go",
+        "registration_test.go",
+        "relinquishment_test.go",
+        "spectrum_inquiry_test.go",
+    ],
+    deps = [
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

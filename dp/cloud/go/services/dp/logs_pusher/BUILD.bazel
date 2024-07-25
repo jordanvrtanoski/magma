@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "logs_pusher",
+    srcs = ["logs_pusher.go"],
+    importpath = "github.com/magma/magma/dp/cloud/go/services/dp/logs_pusher",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "logs_pusher_test",
+    srcs = ["logs_pusher_test.go"],
+    embed = [":logs_pusher"],
+    deps = ["@com_github_stretchr_testify//assert"],
+)

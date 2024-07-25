@@ -1,0 +1,21 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "action_generator",
+    srcs = [
+        "generators.go",
+        "message_generator.go",
+    ],
+    importpath = "github.com/magma/magma/dp/cloud/go/services/dp/active_mode_controller/action_generator",
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_masterminds_squirrel//:go_default_library"],
+)
+
+go_test(
+    name = "action_generator_test",
+    srcs = ["message_generator_test.go"],
+    deps = [
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

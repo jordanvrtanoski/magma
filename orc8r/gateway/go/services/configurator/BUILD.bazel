@@ -11,35 +11,35 @@
 
 load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
 
+# This library is needed to satisfy the side-effect imports of
+# this package. E.g. in orc8r/lib/go/service/config/service_config.go
 go_library(
-    name = "magmad_lib",
+    name = "configurator_lib",
     srcs = [
         "main.go",
     ],
-    importpath = "magma",
-    visibility = ["//visibility:private"],
+    importpath = "magma/gateway/services/configurator",
+    visibility = ["//visibility:public"],
     deps = [
         "//orc8r/gateway/go/config",
         "//orc8r/gateway/go/service_registry",
         "//orc8r/gateway/go/services/bootstrapper/gateway_info",
         "//orc8r/gateway/go/services/bootstrapper/service",
-        "//orc8r/gateway/go/services/magmad/service",
-        "//orc8r/gateway/go/services/magmad/service_manager",
-        "//orc8r/gateway/go/services/magmad/status",
-        "//orc8r/lib/go/protos",
-        "@com_github_aeden_traceroute//:go_default_library",
-        "@com_github_emakeev_snowflake//:go_default_library",
+        "//orc8r/gateway/go/services/configurator/service",
+        "//orc8r/lib/go/security/key",
+        "@com_github_emakeev_snowflake//:snowflake",
         "@com_github_golang_glog//:glog",
-        "@com_github_golang_protobuf//ptypes/struct",
-        "@com_github_google_shlex//:go_default_library",
-        "@com_github_hashicorp_go_multierror//:go_default_library",
-        "@com_github_prometheus_client_model//go",
+        "@com_github_golang_protobuf//jsonpb:go_default_library_gen",
+        "@com_github_golang_protobuf//proto:go_default_library",
+        "@com_github_stretchr_testify//assert",
+        "@org_golang_google_grpc//:go_default_library",
+        "@org_golang_google_grpc//backoff",
+        "@org_golang_google_grpc//credentials",
     ],
 )
 
 go_binary(
-    name = "magmad",
-    embed = [":magmad_lib"],
-    goos = "linux",
+    name = "configurator",
+    embed = [":configurator_lib"],
     visibility = ["//visibility:public"],
 )

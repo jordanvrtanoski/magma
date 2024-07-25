@@ -1,0 +1,26 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "grant",
+    srcs = [
+        "available_frequencies.go",
+        "frequency.go",
+        "per_bandwidth.go",
+        "preferences.go",
+        "selection.go",
+    ],
+    importpath = "github.com/magma/magma/dp/cloud/go/services/dp/active_mode_controller/action_generator/sas/grant",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "grant_test",
+    srcs = [
+        "available_frequencies_test.go",
+        "frequency_test.go",
+        "per_bandwidth_test.go",
+        "preferences_test.go",
+        "selection_test.go",
+    ],
+    deps = ["@com_github_stretchr_testify//assert"],
+)

@@ -1,0 +1,29 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "db",
+    srcs = [
+        "field_mask.go",
+        "fields.go",
+        "finishing.go",
+        "join.go",
+        "models.go",
+        "pagination.go",
+        "query.go",
+        "sql.go",
+        "table.go",
+        "types.go",
+    ],
+    importpath = "github.com/magma/magma/dp/cloud/go/services/dp/storage/db",
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_masterminds_squirrel//:go_default_library"],
+)
+
+go_test(
+    name = "db_test",
+    srcs = ["query_test.go"],
+    deps = [
+        "@com_github_masterminds_squirrel//:go_default_library",
+        "@com_github_stretchr_testify//suite",
+    ],
+)

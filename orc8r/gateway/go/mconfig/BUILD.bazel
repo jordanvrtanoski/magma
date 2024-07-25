@@ -13,9 +13,21 @@ load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 go_library(
     name = "mconfig",
-    embed = ["//orc8r/protos:go_mconfig_protos"],
-    importpath = "magma/orc8r/lib/go/protos/mconfig",
+    srcs = [
+        "definitions.go",
+        "impl.go",
+        "mconfig.go",
+    ],
+    importpath = "magma/gateway/mconfig",
     visibility = ["//visibility:public"],
     deps = [
+        "//orc8r/gateway/go/config",
+        "//orc8r/lib/go/definitions",
+        "//orc8r/lib/go/initflag",
+        "//orc8r/lib/go/protos",
+        "//orc8r/lib/go/service/config",
+        "@com_github_golang_glog//:glog",
+        "@com_github_golang_protobuf//proto",
+        "@com_github_golang_protobuf//ptypes:go_default_library_gen",
     ],
 )

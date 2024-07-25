@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "dp_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/magma/magma/dp/cloud/go/services/dp/dp",
+    visibility = ["//visibility:private"],
+    deps = ["@com_github_golang_glog//:glog"],
+)
+
+go_binary(
+    name = "dp",
+    embed = [":dp_lib"],
+    visibility = ["//visibility:public"],
+)

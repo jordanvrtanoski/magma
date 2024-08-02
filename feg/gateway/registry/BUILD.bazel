@@ -21,7 +21,7 @@ go_library(
     visibility = ["//visibility:public"],
     deps = [
         "//orc8r/gateway/go/service_registry",
-        "//orc8r/lib/go/protos:common_go_proto",
+        "//orc8r/lib/go/protos",
         "//orc8r/lib/go/registry",
         "@org_golang_google_grpc//:go_default_library",
     ],

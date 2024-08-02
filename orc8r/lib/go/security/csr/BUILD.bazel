@@ -22,7 +22,7 @@ go_library(
     importpath = "magma/orc8r/lib/go/security/csr",
     visibility = ["//visibility:public"],
     deps = [
-        "//orc8r/lib/go/protos:magma_protos",
+        "//orc8r/lib/go/protos",
         "//orc8r/lib/go/security/key",
         "@com_github_golang_protobuf//ptypes:go_default_library_gen",
     ],

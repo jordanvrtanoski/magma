@@ -9,9 +9,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@rules_proto_grpc//python:defs.bzl", "python_grpc_library", "python_proto_library")
 
 package(default_visibility = ["//visibility:public"])
+
+proto_library(
+    name = "cbsd_proto",
+    srcs = ["cbsd.proto"],
+    deps = ["@com_google_protobuf//:wrappers_proto"],
+)
 
 python_proto_library(
     name = "cbsd_python_proto",
